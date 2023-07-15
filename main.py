@@ -27,7 +27,7 @@ def make_request_with_proxy(url, proxies=None):
         return response.text
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
-        return None
+        pass
 
 os.system("clear")
 
