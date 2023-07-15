@@ -11,13 +11,14 @@ def get_proxies():
         proxies = response.text.splitlines()
         with open('.prox.txt', 'w') as file:
             file.write('\n'.join(proxies))
-    except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+    except:
+         
         try:
             with open('.prox.txt', 'r') as file:
                 proxies = file.read().splitlines()
         except FileNotFoundError:
             proxies = []
+            pass
     return proxies
 
 def make_request_with_proxy(url, proxies=None):
@@ -25,8 +26,7 @@ def make_request_with_proxy(url, proxies=None):
         response = requests.get(url, proxies=proxies)
         response.raise_for_status()  # Raise an exception if the request was not successful (status code >= 400)
         return response.text
-    except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+    except:
         pass
 
 os.system("clear")
